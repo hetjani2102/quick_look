@@ -16,6 +16,15 @@ try {
   console.error('Failed to load products.json:', err);
 }
 
+// Helper to get current product data
+function getProducts() {
+  try {
+    return JSON.parse(fs.readFileSync(productsFilePath, 'utf8'));
+  } catch (err) {
+    return products;
+  }
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -46,8 +55,9 @@ app.get('/api/health', (req, res) => {
  * Returns list of categories and product counts
  */
 app.get('/api/categories', (req, res) => {
+  const currentProducts = getProducts();
   const categoryMap = {};
-  products.forEach(p => {
+  currentProducts.forEach(p => {
     if (!categoryMap[p.category]) {
       categoryMap[p.category] = {
         id: p.category,
@@ -70,8 +80,9 @@ app.get('/api/categories', (req, res) => {
  */
 app.get('/api/products', (req, res) => {
   const { category, search, sort, minPrice, maxPrice, featured } = req.query;
+  const currentProducts = getProducts();
 
-  let filtered = [...products];
+  let filtered = [...currentProducts];
 
   // Category filter
   if (category && category !== 'all') {
@@ -136,7 +147,7 @@ app.get('/api/products', (req, res) => {
  * GET /api/products/:id
  */
 app.get('/api/products/:id', (req, res) => {
-  const product = products.find(p => p.id === req.params.id);
+  const product = getProducts().find(p => p.id === req.params.id);
   if (!product) {
     return res.status(404).json({
       success: false,

@@ -346,9 +346,14 @@
 /* --- Featured Product Styling --- */
 .featured-product {
     position: relative;
-    height: 100%;
+    border-radius: 8px;
     overflow: hidden;
-    border-radius: 4px;
+}
+
+.featured-product img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .product-info-overlay {
@@ -1044,10 +1049,13 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 12px;
 }
 .product-image-wrapper img {
-    max-height: 220px;
+    max-height: 210px;
+    max-width: 90%;
     width: auto;
+    height: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
