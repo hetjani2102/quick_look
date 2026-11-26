@@ -6,6 +6,10 @@
         /* ==================
            RESET
            ================== */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -78,25 +82,26 @@
         }
         /* Shop Dropdown */
 .shop-dropdown {
-    background: rgb(255, 255, 255);
-    border: none;
-    border-radius: 8px;
-    padding: 10px 0;
+    background: #ffffff;
+    border: 1px solid #EADBCC;
+    border-radius: 12px;
+    padding: 8px 0;
     margin-top: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 30px rgba(94, 10, 21, 0.12);
 }
 
 .shop-dropdown .dropdown-item {
     font-family: "El Messiri", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: rgb(94, 10, 21);
     padding: 10px 22px;
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.25s ease;
 }
 
 .shop-dropdown .dropdown-item:hover {
-    background: rgba(255,255,255,0.25);
-    color: #2D140C;
+    background: #FAF3EA;
+    color: #5E0A15;
+    padding-left: 28px;
 }
 
 /* Remove Bootstrap arrow styling conflict */
@@ -989,19 +994,68 @@
     border-color: #5E0A15;
     box-shadow: 0 3px 8px rgba(94, 10, 21, 0.25);
 }
-.sort-select {
-    border: 1px solid #D8C7B5;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 0.9rem;
+.products-count-badge {
+    background: #FAF3EA;
+    border: 1px solid #EADBCC;
     color: #5E0A15;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+.sort-select-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.sort-select-wrapper .sort-icon {
+    position: absolute;
+    left: 14px;
+    color: #BC8135;
+    font-size: 0.85rem;
+    pointer-events: none;
+    z-index: 2;
+}
+.sort-select-wrapper .select-chevron {
+    position: absolute;
+    right: 14px;
+    color: #BC8135;
+    font-size: 0.75rem;
+    pointer-events: none;
+    z-index: 2;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.sort-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #FFFFFF;
+    border: 1.5px solid #D8C7B5;
+    border-radius: 25px;
+    padding: 8px 36px 8px 36px;
+    font-family: "El Messiri", sans-serif;
+    font-size: 0.92rem;
     font-weight: 600;
+    color: #5E0A15;
+    cursor: pointer;
     outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+}
+.sort-select:hover {
+    border-color: #5E0A15;
+    background-color: #FFFDFB;
+    box-shadow: 0 4px 12px rgba(94, 10, 21, 0.12);
 }
 .sort-select:focus {
-    border-color: #BC8135;
-    box-shadow: 0 0 0 3px rgba(188, 129, 53, 0.2);
+    border-color: #5E0A15;
+    box-shadow: 0 0 0 3px rgba(94, 10, 21, 0.15);
+}
+.sort-select-wrapper:hover .select-chevron {
+    transform: translateY(2px);
+    color: #5E0A15;
 }
 
 /* Product Cards Enhanced */

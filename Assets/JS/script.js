@@ -315,7 +315,9 @@
     if (!DOM.productsGrid) return;
 
     if (DOM.productsCount) {
-      DOM.productsCount.textContent = `Showing ${state.filteredProducts.length} of ${state.products.length} products`;
+      DOM.productsCount.textContent = state.filteredProducts.length === state.products.length
+        ? `${state.products.length} Products`
+        : `Showing ${state.filteredProducts.length} of ${state.products.length} Products`;
     }
 
     if (state.filteredProducts.length === 0) {
@@ -820,6 +822,15 @@
           applyFiltersAndSort();
         }, 250);
       });
+
+      // Pressing enter scrolls to shop
+      DOM.searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const shopSection = document.getElementById('shop');
+          if (shopSection) shopSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
     }
 
     // Category Filter Pills
@@ -1063,6 +1074,12 @@
       }
     });
   }
+
+  // Expose helpful API to window for interactions
+  window.QuickLookApp = {
+    showToast,
+    state
+  };
 
   // --- INITIALIZATION ---
   document.addEventListener("DOMContentLoaded", () => {
