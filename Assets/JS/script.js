@@ -891,6 +891,20 @@
       });
     }
 
+    // Spotlight Coupon Pill Click
+    const couponPill = document.getElementById('spotlightCouponPill');
+    if (couponPill) {
+      couponPill.addEventListener('click', () => {
+        if (DOM.couponInput) DOM.couponInput.value = 'WELCOME10';
+        applyCoupon();
+        showToast('Coupon <strong>WELCOME10</strong> applied to your cart!', 'fas fa-tag text-success');
+        const cartOffcanvasEl = document.getElementById('cartOffcanvas');
+        if (cartOffcanvasEl) {
+          bootstrap.Offcanvas.getOrCreateInstance(cartOffcanvasEl).show();
+        }
+      });
+    }
+
     // Global Delegated Click Handler for Products Grid & Drawers
     document.addEventListener('click', (e) => {
       // Add to cart from card
