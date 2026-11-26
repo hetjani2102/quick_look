@@ -40,13 +40,13 @@
             Shop
         </a>
         <ul class="dropdown-menu shop-dropdown">
-            <li><a class="dropdown-item" href="#lotion">Lotion</a></li>
-            <li><a class="dropdown-item" href="#serum">Serum</a></li>
-            <li><a class="dropdown-item" href="#facewash">FaceWash</a></li>
-            <li><a class="dropdown-item" href="facesrcub">FaceSrcub</a></li>
-            <li><a class="dropdown-item" href="bodywash">BodyWash</a></li>
-            <li><a class="dropdown-item" href="shampoo">Shampoo</a></li>
-            <li><a class="dropdown-item" href="sunscreen">SunScreen</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="lotion">Lotion</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="serum">Serum</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="facewash">Face Wash</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="facescrub">Face Scrub</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="bodywash">Body Wash</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="shampoo">Shampoo</a></li>
+            <li><a class="dropdown-item category-nav-link" href="#shop" data-category="sunscreen">SunScreen</a></li>
         </ul>
     </li>
 
@@ -58,13 +58,22 @@
         <a class="nav-link" href="#contact">Contact Us</a>
     </li>
 </ul>
-            <!-- Right Side -->
-            <div class="navbar-icons">
-                <input type="text" class="search-input" placeholder="Search..." />
-                <i class="fas fa-search"></i>
-                <i class="fas fa-user"></i>
-                <i class="fas fa-shopping-cart"></i>
-                <i class="far fa-heart"></i>
+            <!-- Right Side Interactive Icons -->
+            <div class="navbar-icons d-flex align-items-center gap-2">
+                <div class="position-relative d-flex align-items-center">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search skincare, ingredients..." />
+                    <button class="nav-icon-btn" id="searchToggleBtn" type="button" aria-label="Toggle Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="nav-icon-btn" id="wishlistBtn" type="button" aria-label="Wishlist" data-bs-toggle="offcanvas" data-bs-target="#wishlistOffcanvas" title="My Wishlist">
+                    <i class="far fa-heart"></i>
+                    <span class="badge-pill" id="wishlistCountBadge">0</span>
+                </button>
+                <button class="nav-icon-btn" id="cartBtn" type="button" aria-label="Shopping Cart" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" title="My Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge-pill" id="cartCountBadge">0</span>
+                </button>
             </div>
 
         </div>
@@ -207,81 +216,54 @@
 </section>
 
 
-    <!-- Trending Products -->
-<section class="trending-products py-5 bg-white">
-    <div class="container-fluid">
-        <h2 class="section-title text-center mb-5">Trending Products</h2>
+    <!-- Trending Products (Dynamic Catalog) -->
+<section id="shop" class="trending-products py-5 bg-white">
+    <div class="container-fluid px-lg-5">
+        <h2 class="section-title text-center mb-2">Trending Products</h2>
+        <p class="text-center text-muted mb-4">Discover our top-rated natural, chemical-free personal care essentials</p>
+
+        <!-- Dynamic Filter & Sort Toolbar -->
+        <div class="catalog-toolbar d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+            <div class="filter-pills-wrap" id="categoryFilterContainer">
+                <button type="button" class="filter-pill active" data-category="all">All Products</button>
+                <button type="button" class="filter-pill" data-category="shampoo">Shampoo</button>
+                <button type="button" class="filter-pill" data-category="facewash">Face Wash</button>
+                <button type="button" class="filter-pill" data-category="sunscreen">Sunscreen</button>
+                <button type="button" class="filter-pill" data-category="serum">Serums</button>
+                <button type="button" class="filter-pill" data-category="bodywash">Body Wash</button>
+                <button type="button" class="filter-pill" data-category="lotion">Lotions</button>
+                <button type="button" class="filter-pill" data-category="facescrub">Face Scrub</button>
+            </div>
+            
+            <div class="d-flex align-items-center gap-3">
+                <span id="productsCount" class="text-muted fw-bold small">Loading catalog...</span>
+                <select id="sortSelect" class="sort-select" aria-label="Sort products">
+                    <option value="featured">Featured First</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="rating-desc">Highest Rated</option>
+                    <option value="name-asc">Alphabetical (A-Z)</option>
+                </select>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="col-lg-6 mb-4">
-                <div class="featured-product">
-                    <img src="./Assets/Images/QL_TRENDING_PAGE-01-01.webp" alt="Featured Product" class="img-fluid">
+            <!-- Left Hero / Featured Banner -->
+            <div class="col-lg-4 mb-4">
+                <div class="featured-product h-100 position-relative rounded overflow-hidden">
+                    <img src="./Assets/Images/QL_TRENDING_PAGE-01-01.webp" alt="Featured Product" class="img-fluid w-100 h-100 object-fit-cover">
                     <div class="product-info-overlay">
                         <h3>Empower Yourself</h3>
-                        <p>Get the skin you want to feel</p>
-                        <button class="btn-primary-custom">SHOP NOW</button>
+                        <p>Get the skin you want to feel with 100% pure botanical extracts</p>
+                        <button type="button" class="btn btn-primary-custom" id="exploreAllBtn">Explore All</button>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="product-card">
-                            <div class="product-image-wrapper">
-                                <img src="./Assets/Images/coconut-almond-cover-406x406.webp" alt="Product" class="img-fluid">
-                                <div class="add-to-cart-overlay">
-                                    <span class="cart-text">ADD TO CART</span>
-                                    <div class="heart-icon">
-                                        <span>♥</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-details">
-                                <h4>Coconut & Almond Shampoo</h4>
-                                <div class="price">₹299.00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="product-card">
-                            <div class="product-image-wrapper">
-                                <img src="./Assets/Images/shikakai-reetha-shampoo-cover-406x406.webp" alt="Product" class="img-fluid">
-                                <div class="add-to-cart-overlay">
-                                    <span class="cart-text">ADD TO CART</span>
-                                    <div class="heart-icon">
-                                        <span>♥</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-details">
-                                <h4>Shikakai & Reetha Shampoo - 400ml</h4>
-                                <div class="price">₹299.00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="product-card">
-                            <div class="product-image-wrapper">
-                                <img src="./Assets/Images/QL-PRODUCT-BG-01-scaled.webp" alt="Product" class="img-fluid">
-                                <div class="add-to-cart-overlay">
-                                    <span class="cart-text">ADD TO CART</span>
-                                    <div class="heart-icon">
-                                        <span>♥</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-details">
-                                <h4>Sunscreen SPF 50 for Ultimate Sun Protection</h4>
-                                <div class="price">₹359.00</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="view-all-container mt-4 text-center">
-                    <a href="#" class="btn-view-all">View All Products</a>
+            <!-- Right: Dynamic Product Catalog Grid -->
+            <div class="col-lg-8">
+                <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="productsGrid">
+                    <!-- Products will be dynamically populated here via script.js -->
                 </div>
             </div>
         </div>
@@ -632,6 +614,221 @@
         </div>
     </div>
 </footer>
+
+<!-- ========================================================
+     OFFCANVAS: SHOPPING CART DRAWER
+     ======================================================== -->
+<div class="offcanvas offcanvas-end cart-drawer" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title d-flex align-items-center gap-2" id="cartOffcanvasLabel">
+            <i class="fas fa-shopping-bag"></i> Your Cart (<span id="cartHeaderCount">0</span>)
+        </h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+        <!-- Free Shipping Tracker -->
+        <div class="shipping-progress-box">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold text-dark" id="shippingProgressText">Add ₹499 more for FREE shipping</span>
+                <i class="fas fa-shipping-fast text-success"></i>
+            </div>
+            <div class="shipping-progress-bar">
+                <div class="shipping-progress-fill" id="shippingProgressBar" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartItemsContainer">
+            <!-- Dynamically populated or empty state -->
+        </div>
+
+        <!-- Footer / Checkout Area -->
+        <div class="cart-drawer-footer mt-auto pt-3 border-top">
+            <!-- Coupon Code Section -->
+            <div class="coupon-box">
+                <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon: WELCOME10" />
+                <button type="button" id="applyCouponBtn" class="btn-apply-coupon">Apply</button>
+            </div>
+            <div id="couponMessage" class="small mb-2" style="display:none;"></div>
+
+            <!-- Price Breakdown -->
+            <div class="order-summary-box">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="summarySubtotal">₹0.00</span>
+                </div>
+                <div class="summary-line text-success" id="discountLine" style="display:none;">
+                    <span>Discount (<span id="appliedCouponCode"></span>):</span>
+                    <span id="summaryDiscount">-₹0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Shipping:</span>
+                    <span id="summaryShipping">₹49.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>GST (5%):</span>
+                    <span id="summaryTax">₹0.00</span>
+                </div>
+                <div class="summary-line total-line">
+                    <span>Estimated Total:</span>
+                    <span id="summaryTotal">₹0.00</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn-checkout" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal" disabled>
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================
+     OFFCANVAS: WISHLIST DRAWER
+     ======================================================== -->
+<div class="offcanvas offcanvas-end cart-drawer" tabindex="-1" id="wishlistOffcanvas" aria-labelledby="wishlistOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title d-flex align-items-center gap-2" id="wishlistOffcanvasLabel">
+            <i class="far fa-heart"></i> My Wishlist (<span id="wishlistHeaderCount">0</span>)
+        </h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+        <div class="cart-items-list" id="wishlistItemsContainer">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================
+     MODAL: PRODUCT QUICK VIEW
+     ======================================================== -->
+<div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" id="quickViewModalBody">
+                <!-- Dynamically populated via script.js -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================
+     MODAL: CHECKOUT & ORDER CONFIRMATION
+     ======================================================== -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-dark text-white" style="background-color: #5E0A15 !important;">
+                <h5 class="modal-title text-white d-flex align-items-center gap-2">
+                    <i class="fas fa-lock"></i> Secure Checkout
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" id="checkoutModalBody">
+                <form id="checkoutForm" novalidate>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <h6 class="fw-bold text-uppercase" style="color: #5E0A15;">1. Delivery Information</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Full Name *</label>
+                            <input type="text" class="form-control" id="customerFullName" required placeholder="e.g. Het Jani">
+                            <div class="invalid-feedback">Please enter your full name.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Email Address *</label>
+                            <input type="email" class="form-control" id="customerEmail" required placeholder="e.g. het@example.com">
+                            <div class="invalid-feedback">Please provide a valid email address.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">10-Digit Mobile Number *</label>
+                            <input type="tel" class="form-control" id="customerPhone" required placeholder="e.g. 9876543210" maxlength="10">
+                            <div class="invalid-feedback">Please provide a valid 10-digit mobile number.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">PIN Code *</label>
+                            <input type="text" class="form-control" id="customerPincode" required placeholder="e.g. 400020" maxlength="6">
+                            <div class="invalid-feedback">Please enter a valid 6-digit postal code.</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Delivery Address (House/Street/Area) *</label>
+                            <textarea class="form-control" id="customerAddress" rows="2" required placeholder="House number, Apartment, Landmark, City"></textarea>
+                            <div class="invalid-feedback">Address must be at least 10 characters long.</div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <h6 class="fw-bold text-uppercase" style="color: #5E0A15;">2. Payment Method</h6>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check p-3 border rounded mb-2 bg-light">
+                                <input class="form-check-input" type="radio" name="paymentOption" id="payCOD" value="Cash On Delivery (COD)" checked>
+                                <label class="form-check-label fw-bold d-flex justify-content-between" for="payCOD">
+                                    <span><i class="fas fa-hand-holding-usd me-2 text-success"></i> Cash on Delivery (COD)</span>
+                                    <span class="badge bg-secondary">No Advance Payment</span>
+                                </label>
+                            </div>
+                            <div class="form-check p-3 border rounded mb-2">
+                                <input class="form-check-input" type="radio" name="paymentOption" id="payUPI" value="UPI / Instant Bank Transfer">
+                                <label class="form-check-label fw-bold" for="payUPI">
+                                    <i class="fas fa-mobile-alt me-2 text-primary"></i> UPI / Google Pay / PhonePe (Simulated)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="small text-muted d-block">Order Payable Total:</span>
+                                <span class="h4 fw-bold" style="color: #5E0A15;" id="checkoutTotalAmount">₹0.00</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom px-4 py-2" id="placeOrderBtn">
+                                Confirm & Place Order
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Order Success State (Hidden by default) -->
+                <div id="orderSuccessView" style="display:none;" class="text-center py-4">
+                    <div class="mb-3">
+                        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h3 class="fw-bold" style="color: #5E0A15;">Thank you for your order!</h3>
+                    <p class="text-muted">Your payment and shipping details have been verified.</p>
+
+                    <div class="card p-3 my-4 text-start bg-light border-0">
+                        <div class="row g-2">
+                            <div class="col-sm-6"><small class="text-muted">Order ID:</small> <strong id="successOrderId" class="d-block text-dark"></strong></div>
+                            <div class="col-sm-6"><small class="text-muted">Tracking Code:</small> <strong id="successTrackingId" class="d-block text-success"></strong></div>
+                            <div class="col-sm-6"><small class="text-muted">Estimated Delivery:</small> <strong id="successDeliveryDate" class="d-block text-dark"></strong></div>
+                            <div class="col-sm-6"><small class="text-muted">Payment Mode:</small> <strong id="successPaymentMethod" class="d-block text-dark"></strong></div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary-custom px-4" data-bs-dismiss="modal">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================
+     TOAST NOTIFICATIONS CONTAINER
+     ======================================================== -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1090;">
+    <div id="appToast" class="toast toast-custom align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body d-flex align-items-center gap-2" id="toastMessage">
+                Notification message
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
 
     <script src="././Assets/JS/bootstrap.bundle.min.js"></script>
     <script src="./Assets/JS/script.js"></script>

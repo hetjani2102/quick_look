@@ -1,0 +1,21 @@
+[
+  {
+    "code": "WELCOME10",
+    "discountPercent": 10,
+    "minOrderAmount": 299,
+    "description": "10% off on orders above ₹299"
+  },
+  {
+    "code": "QUICKLOOK20",
+    "discountPercent": 20,
+    "minOrderAmount": 599,
+    "description": "20% off on orders above ₹599"
+  },
+  {
+    "code": "FREESHIP",
+    "discountPercent": 0,
+    "freeShipping": true,
+    "minOrderAmount": 0,
+    "description": "Free standard shipping on your order"
+  }
+]
