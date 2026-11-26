@@ -749,15 +749,13 @@
 
         .why-shop-image-wrapper {
             position: relative;
-            max-width: 480px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .why-shop-image-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(94, 10, 21, 0.08);
             display: block;
         }
 
