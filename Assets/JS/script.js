@@ -722,7 +722,7 @@
       address: document.getElementById('customerAddress').value.trim()
     };
 
-    const paymentOption = document.querySelector('input[name="paymentOption"]:checked')?.value || 'Cash On Delivery (COD)';
+    const paymentOption = document.getElementById('selectedPaymentMethod')?.value || document.querySelector('input[name="paymentOption"]:checked')?.value || 'Cash On Delivery (COD)';
 
     const submitBtn = document.getElementById('placeOrderBtn');
     submitBtn.disabled = true;
@@ -992,14 +992,44 @@
       DOM.checkoutForm.addEventListener('submit', handleCheckoutSubmit);
     }
 
-    // Reset Checkout Modal when closed
+    // Payment Option Cards Selection
+    document.querySelectorAll('.payment-option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        const paymentVal = card.getAttribute('data-payment');
+        const hiddenInput = document.getElementById('selectedPaymentMethod');
+        if (hiddenInput) hiddenInput.value = paymentVal;
+      });
+    });
+
+    // Checkout Modal Events (Preview items & reset)
     const checkoutModalEl = document.getElementById('checkoutModal');
     if (checkoutModalEl) {
+      checkoutModalEl.addEventListener('show.bs.modal', () => {
+        const previewEl = document.getElementById('checkoutItemsPreview');
+        if (previewEl) {
+          if (state.cart.length === 0) {
+            previewEl.textContent = '0 Items in Cart';
+          } else {
+            const totalQty = state.cart.reduce((s, i) => s + i.quantity, 0);
+            const names = state.cart.map(i => `${i.name} (x${i.quantity})`).join(', ');
+            previewEl.textContent = `${totalQty} Item${totalQty > 1 ? 's' : ''}: ${names.length > 40 ? names.substring(0, 38) + '...' : names}`;
+          }
+        }
+      });
+
       checkoutModalEl.addEventListener('hidden.bs.modal', () => {
         DOM.checkoutForm.style.display = 'block';
         DOM.checkoutForm.reset();
         DOM.checkoutForm.classList.remove('was-validated');
         DOM.orderSuccessView.style.display = 'none';
+        // Reset payment selection back to COD default
+        document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('active'));
+        const firstCard = document.querySelector('.payment-option-card[data-payment="Cash On Delivery (COD)"]');
+        if (firstCard) firstCard.classList.add('active');
+        const hiddenInput = document.getElementById('selectedPaymentMethod');
+        if (hiddenInput) hiddenInput.value = 'Cash On Delivery (COD)';
       });
     }
 

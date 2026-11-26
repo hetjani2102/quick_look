@@ -1455,3 +1455,149 @@
     color: #5E0A15;
     font-size: 0.95rem;
 }
+
+
+/* ============================================================
+   ENHANCED CHECKOUT POPUP & INTERACTIVE PAYMENT CARDS
+   ============================================================ */
+.checkout-modal-dialog {
+    max-width: 680px;
+}
+.checkout-modal-content {
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+.checkout-modal-header {
+    background: #5E0A15 !important;
+    padding: 18px 24px;
+    border-bottom: 2px solid #BC8135;
+}
+.checkout-modal-header h5 {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.checkout-step-title {
+    color: #5E0A15;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+.checkout-input-group {
+    position: relative;
+}
+.checkout-input-group .form-control {
+    border: 1.5px solid #D8C7B5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+.checkout-input-group .form-control:focus {
+    border-color: #5E0A15;
+    box-shadow: 0 0 0 3px rgba(94, 10, 21, 0.12);
+}
+
+/* Payment Option Cards */
+.payment-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.payment-option-card {
+    background: #FFFFFF;
+    border: 2px solid #E6D9CB;
+    border-radius: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    user-select: none;
+}
+.payment-option-card:hover {
+    border-color: #BC8135;
+    background: #FCFAF7;
+    transform: translateY(-1px);
+}
+.payment-option-card.active {
+    border-color: #5E0A15 !important;
+    background: #FFF8F2 !important;
+    box-shadow: 0 4px 14px rgba(94, 10, 21, 0.12);
+}
+.payment-check-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #C4B5A5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+.payment-option-card.active .payment-check-circle {
+    background: #5E0A15;
+    border-color: #5E0A15;
+    color: #FFFFFF !important;
+}
+.payment-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.cod-icon {
+    background: #EAF7EE;
+    color: #27AE60;
+}
+.upi-icon {
+    background: #EBF3FC;
+    color: #2980B9;
+}
+.card-icon {
+    background: #FDF3E7;
+    color: #D35400;
+}
+.payment-title {
+    color: #2D140C;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.payment-option-card.active .payment-title {
+    color: #5E0A15;
+}
+.payment-badge {
+    background: #EAF7EE;
+    color: #27AE60;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+.payment-badge-online {
+    background: #EBF3FC;
+    color: #2980B9;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+.payment-badge-card {
+    background: #FDF3E7;
+    color: #D35400;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
