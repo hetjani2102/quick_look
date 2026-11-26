@@ -778,7 +778,7 @@
       alert('Order could not be processed. Please check your connection.');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Confirm & Place Order';
+      submitBtn.innerHTML = 'Place Order Now';
     }
   }
 
